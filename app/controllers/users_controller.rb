@@ -1,5 +1,5 @@
-class UsersController < ActionController::Base
-  def sign_up
+class UsersController < ApplicationController
+  def sign_up  
     @user = User.new
     # @user = User.new (email: "aa@aa.cc", username: "c") 自動長好欄位內容
   end
