@@ -1,6 +1,7 @@
 class UsersController < ActionController::Base
   def sign_up
     @user = User.new
+    # @user = User.new (email: "aa@aa.cc", username: "c") 自動長好欄位內容
   end
 
   def account_verify
@@ -10,8 +11,11 @@ class UsersController < ActionController::Base
 
     if @user.save
     #快速轉址到首頁
+      # redirect_to "/sign_up"
       redirect_to "/"
     else
+      #render 不跳轉 只做渲染畫面
+      render :sign_up
     end
   end
 end
