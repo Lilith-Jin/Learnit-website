@@ -30,5 +30,6 @@ class UsersController < ApplicationController
       redirect_to "/"
     else
       render html: "no user"
+    end
   end
 end
