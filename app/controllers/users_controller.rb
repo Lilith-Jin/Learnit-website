@@ -18,4 +18,17 @@ class UsersController < ApplicationController
       render :sign_up
     end
   end
+
+  def sign_in
+    @user = User.new
+  end
+  
+  def check
+    u = User.login(params[:user])
+    if u
+      session[:recognize] = u.in
+      redirect_to "/"
+    else
+      render html: "no user"
+  end
 end
