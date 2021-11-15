@@ -1,1 +1,9 @@
 <h1>123</h1>
+
+<% if user_sign_in? %>
+已登入<a a href="/sign_out">登出</a>
+
+<% else %>
+未登入<a a href="/sign_in">登入</a>
+
+<% end %>
