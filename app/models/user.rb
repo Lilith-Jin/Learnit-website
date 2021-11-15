@@ -6,7 +6,7 @@ class User < ApplicationRecord
   # https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression  附上可用解答連結
   validates :email, presence: true, uniqueness: true, format: { with: /^\S+@\S+\S.\S+$/, message: "only allows letters" }
 
-  before_save :encrypt_password
+  before_create :encrypt_password
   #callback
   #Synchronize同步
 
