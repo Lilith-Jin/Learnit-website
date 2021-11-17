@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def check
     u = User.login(params[:user])
     if u
-      session[:recognize] = u.in
+      session[:recognize] = u.id
       redirect_to "/"
     else
       render html: "no user"
