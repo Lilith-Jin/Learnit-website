@@ -5,9 +5,8 @@ class UsersController < ApplicationController
   end
 
   def account_verify
-   #限定(:username, :password, :email)是ok的
-    clean_params = params.require(:user).permit(:username, :password, :email)
-    @user = User.new(clean_params)
+   #限定(:username, :password, :email)是ok的，其餘過濾掉
+    @user = User.new(user_params)
 
     if @user.save
     #快速轉址到首頁
@@ -31,5 +30,11 @@ class UsersController < ApplicationController
     else
       render html: "no user"
     end
+  end
+
+  private
+  #check/account_verify時會被重複使用clean_params 所以定義方法user_params放在private
+  def user_params
+    clean_params = params.require(:user).permit(:username, :password, :email)
   end
 end
