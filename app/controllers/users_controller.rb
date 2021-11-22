@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-    #快速轉址到首頁
+      #redirect_to快速轉址到首頁
       # redirect_to "/sign_up"
       redirect_to "/"
     else
@@ -23,14 +23,21 @@ class UsersController < ApplicationController
   end
   
   def check
+    #註冊後的資料會存在params，把login的params指定給u
     u = User.login(params[:user])
     if u
+      #將u.id想像成識別證，session存取在sever，之後到每個頁面就不用login
       session[:recognize] = u.id
       redirect_to "/"
     else
       render html: "no user"
     end
   end
+
+  def sign_out
+    session[:recognize] = nil
+    flash[:notice] = "已登出"
+    redirect_to  courses_path
 
   private
   #check/account_verify時會被重複使用clean_params 所以定義方法user_params放在private
