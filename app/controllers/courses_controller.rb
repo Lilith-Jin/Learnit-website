@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
 
   before_action :set_course, only:[:edit, :update, :destroy]
+
   def index
     @courses = Course.all
   end
@@ -13,6 +14,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
+      flash[:notice] = "課程新增成功"
       redirect_to courses_path
     else
       render:new
@@ -26,7 +28,7 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find_by(id: params[:id])
     if @course.update(course_params)
-      flash[:notice] = "編輯成功"
+      flash[:notice] = "課程編輯成功"
       redirect_to courses_path
     else
       render :edit
@@ -36,7 +38,7 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find_by(id: params[:id])
     @course.destroy
-    flash[:notice] = "刪除一筆資料"
+    flash[:notice] = "刪除一筆課程"
     redirect_to courses_path
   end
 end

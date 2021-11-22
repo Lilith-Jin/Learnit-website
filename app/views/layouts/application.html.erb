@@ -11,6 +11,8 @@
   </head>
 
   <body>
+    <%= render "shared/flash_message" if flash[:notice] %>
     <%= yield %>
+    <%= render "shared/footer" %>
   </body>
 </html>
