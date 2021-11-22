@@ -3,3 +3,26 @@
 # <a href="/courses/new">新增課程</a>
 
 <%= link_to "新增課程", new_course_path %>
+
+<table>
+  <thead>
+    <tr>
+      <td>名稱</td>
+      <td>價格</td>
+      <td>介紹</td>
+      <td>時數</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do|course| %>
+    <tr>
+      <td><%= course.name %></td>
+      <td><%= course.price %></td>
+      <td><%= course.intro %></td>
+      <td><%= course.hour %></td>
+      <td><%= link_to "編輯課程", edit_course_path(course.id) %></td>
+      <td><%= link_to "刪除課程", course_path(course.id), method: "delete", data: {confirm: "確認刪除"} %></td>
+    </tr>
+    <% end %> 
+  </tbody>
+</table>

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  def
-    index
+  def index
+    @courses = Course.all
   end
 
   def
@@ -15,6 +15,27 @@ class CoursesController < ApplicationController
     else
       render:new
     end
+  end
+
+  def edit
+    @course = Course.find_by(id: params[:id])
+  end
+
+  def update
+    @course = Course.find_by(id: params[:id])
+    if @course.update(course_params)
+      flash[:notice] = "編輯成功"
+      redirect_to courses_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @course = Course.find_by(id: params[:id])
+    @course.destroy
+    flash[:notice] = "刪除一筆資料"
+    redirect_to courses_path
   end
 end
 
