@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+
+  before_action :set_course, only:[:edit, :update, :destroy]
   def index
     @courses = Course.all
   end
@@ -41,6 +43,11 @@ end
 
 
 private
+
+def set_course
+  @course = Course.find_by(id: params[:id])
+end
+
 def course_params
   clean_params = params.require(:course).permit(:name, :price, :intro, :hour)
 end
