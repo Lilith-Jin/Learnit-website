@@ -36,8 +36,9 @@ class UsersController < ApplicationController
 
   def sign_out
     session[:recognize] = nil
-    flash[:notice] = "已登出"
+    # flash[:notice] = "已登出"
     redirect_to  courses_path
+  end
 
   private
   #check/account_verify時會被重複使用clean_params 所以定義方法user_params放在private

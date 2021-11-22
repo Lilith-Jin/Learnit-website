@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post"/account_verify", to: "users#account_verify"
 
     get "/sign_in", to: "users#sign_in"
-    post "check", to: "users#check"
+    post "/check", to: "users#check"
 
     delete "/sign_out", to: "users#sign_out"
 end
