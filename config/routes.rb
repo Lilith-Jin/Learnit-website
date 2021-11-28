@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    get "/", to: "pages#index"
+
+    resources :courses
+    root "courses#index"
+
+    # get "/", to: "pages#index"
     get "/about", to: "pages#about"
 
     #user's action
@@ -8,5 +12,7 @@ Rails.application.routes.draw do
     post"/account_verify", to: "users#account_verify"
 
     get "/sign_in", to: "users#sign_in"
-    post "check", to: "users#check"
+    post "/check", to: "users#check"
+
+    delete "/sign_out", to: "users#sign_out"
 end
