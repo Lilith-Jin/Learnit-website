@@ -16,7 +16,7 @@
   <tbody>
     <% @courses.each do|course| %>
     <tr>
-      <td><%= course.name %></td>
+      <td><%= link_to course.name,course_path(course.id) %></td>
       <td><%= course.price %></td>
       <td><%= course.intro %></td>
       <td><%= course.hour %></td>

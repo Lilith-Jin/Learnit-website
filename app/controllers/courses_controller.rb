@@ -11,6 +11,10 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
+  def show
+    @course = Course.find_by(id: params[:id])
+  end
+
   def create
     # @course = Course.new(course_params) 無判斷使用者狀態
     @course = current_user.courses.build(course_params)
