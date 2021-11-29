@@ -26,7 +26,16 @@
   <div class="action">
     <%= f.submit "送出" %>
   </div>
+
+  <% end %>
   
+  <h2>評論</h2>
+  <% @reviews.each do |review| %>
+  <section class="comment">
+    星數 :<%= "★"*review.rating %><%= "☆"*(5-review.rating) %>
+    <header><%= review.title%></header>
+    <article><%= review.content%></article>
+  </section>
   <% end %>
 
 <%= link_to 'last page', courses_path %>

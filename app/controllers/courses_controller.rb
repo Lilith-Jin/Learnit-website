@@ -14,6 +14,10 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find_by(id: params[:id])
     @review = Review.new
+    # @reviews = Review.where(course_id: @course) 省略
+    # @reviews是getter
+    @reviews = @course.reviews.order(id: :desc)#lazy loading 要用再印出來
+    #order(id: :desc) 透過資料庫撈出來的資料，做反向排序
   end
 
   def create

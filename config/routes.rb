@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
     resources :courses do
       #resources :reviews, shallow :true (自動長出巢狀路徑)
-      resources :reviews, only:[:create] #因為用到的action少 手動新增就好
+      resources :reviews, only:[:create] #因為用到的action少 手動新增需要的就好
     end
       resources :reviews, only:[:destroy] #???
 
