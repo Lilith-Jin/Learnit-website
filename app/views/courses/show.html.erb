@@ -6,7 +6,8 @@
   <li><%= @course.hour %></li>
 </ul> -->
 
-<%= form_for(@review, url: course_reviews_path(@course)) do |f| %> 
+<%= form_for(@review, url: course_reviews_path(@course), remote: true) do |f| %> 
+<%# remote: true 為了不讓表單換頁 %>
  
   <div class="field">
     <%= f.label :rating %>
@@ -31,9 +32,11 @@
 
   <h2>評論</h2>
   <div class="review-container">
-    <% @reviews.each do |review| %>
-      <%= render "review", review: @review %>
-    <% end %>
+    <%# @reviews.each do |review| %>
+      <%#= render "review", review: @review %>
+      <%#= render partial: "review", collection: @reviews %> <%#collection比較不影響效能%>
+      <%= render @reviews %><%#依照rails慣例，可以將_review檔與js放在一起%>
+    <%# end %>
 </div>
 
 <%= link_to 'last page', courses_path %>
