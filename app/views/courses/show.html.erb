@@ -1,9 +1,33 @@
 <h1><%= @course.name %></h1>
 
-<ul>
+<!-- <ul>
   <li><%= @course.price %></li>
   <li><%= @course.intro %></li>
   <li><%= @course.hour %></li>
-</ul>
+</ul> -->
+
+<%= form_for(@review, url: course_reviews_path(@course)) do |f| %> 
+ 
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select :rating, [1, 2, 3, 4, 5], include_blank: false, selected:4 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "送出" %>
+  </div>
+  
+  <% end %>
 
 <%= link_to 'last page', courses_path %>
+

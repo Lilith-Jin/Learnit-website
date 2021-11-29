@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   before_action :set_course, only: [:edit, :update, :destroy]
-  before_action :login?, except: [:index, :show]
+  before_action :authenticated!, except: [:index, :show]
 
   def index
     @courses = Course.all
@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find_by(id: params[:id])
+    @review = Review.new
   end
 
   def create
@@ -67,15 +68,15 @@ def set_course
   end
 end
 
-def login?
-  #如果沒登入，轉去登入頁面
-  # if not user_signed_in?
-  # if session[:recognize] == nil
-    # redirect_to sign_up_path
-  # end
-  redirect_to sign_in_path flash[:notice]='請先登入會員' unless user_signed_in?
+# def login?
+#   #如果沒登入，轉去登入頁面
+#   # if not user_signed_in?
+#   # if session[:recognize] == nil
+#     # redirect_to sign_up_path
+#   # end
+#   redirect_to sign_in_path flash[:notice]='請先登入會員' unless user_signed_in?
 
-end
+# end
 
 def course_params
   clean_params = params.require(:course).permit(:name, :price, :intro, :hour)

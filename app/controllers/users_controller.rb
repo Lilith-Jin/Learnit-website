@@ -5,15 +5,15 @@ class UsersController < ApplicationController
   end
 
   def account_verify
-   #限定(:username, :password, :email)是ok的，其餘過濾掉
-    @user = User.new(user_params)
+   
+    @user = User.new(user_params)#限定(:username, :password, :email)是ok的，其餘過濾掉
 
     if @user.save
       #redirect_to快速轉址到首頁
       # redirect_to "/sign_up"
       redirect_to "/"
     else
-      #render 不跳轉 只做渲染畫面
+      #render 不跳轉 借sign_up的view做渲染畫面
       render :sign_up
     end
   end
@@ -23,11 +23,15 @@ class UsersController < ApplicationController
   end
   
   def check
+    #render html:params 看一下回傳了什麼內容
+    # u = User.find_by(email: email, password: encryted_password)
     #註冊後的資料會存在params，把login的params指定給u
     u = User.login(params[:user])
+
     if u
-      #將u.id想像成識別證，session存取在sever，之後到每個頁面就不用login
+      #將u.id想像成識別證，在sever存取session，之後到每個頁面就不用login
       session[:recognize] = u.id
+
       redirect_to "/"
     else
       render html: "no user"
@@ -41,6 +45,7 @@ class UsersController < ApplicationController
   end
 
   private
+  #params是在user送出表單後會長出的一串資料，型態為hash
   #check/account_verify時會被重複使用clean_params 所以定義方法user_params放在private
   def user_params
     clean_params = params.require(:user).permit(:username, :password, :email)
