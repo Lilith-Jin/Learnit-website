@@ -29,14 +29,16 @@
 
   <% end %>
   
-  <h2>評論</h2>
-  <% @reviews.each do |review| %>
-  <section class="comment">
-    星數 :<%= "★"*review.rating %><%= "☆"*(5-review.rating) %>
-    <header><%= review.title%></header>
-    <article><%= review.content%></article>
-  </section>
-  <% end %>
+  <div class="review-container">
+    <h2>評論</h2>
+    <% @reviews.each do |review| %>
+    <section class="comment">
+      星數 :<%= "★"*review.rating %><%= "☆"*(5-review.rating) %>
+      <header><%= review.title%></header>
+      <article><%= review.content%></article>
+    </section>
+    <% end %>
+</div>
 
 <%= link_to 'last page', courses_path %>
 
