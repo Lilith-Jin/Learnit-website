@@ -38,3 +38,11 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+db/migrate/20211118101211_create_candidates.rb
+app/assets/stylesheets/courses.scss
+app/models/candidate.rb
+test/controllers/courses_controller_test.rb
+test/fixtures/candidates.yml
+test/fixtures/courses.yml
+test/models/candidate_test.rb
+test/models/course_test.rb

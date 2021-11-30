@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[6.1]
-  def change
+  def change #早期是up和doen方法
     create_table :users do |t|
-      t.string :username
+      t.string :username #varchar(100)
       t.string :password
       t.string :email
 

@@ -1,0 +1,44 @@
+<h1><%= @course.name %></h1>
+
+<!-- <ul>
+  <li><%= @course.price %></li>
+  <li><%= @course.intro %></li>
+  <li><%= @course.hour %></li>
+</ul> -->
+
+<%= form_for(@review, url: course_reviews_path(@course)) do |f| %> 
+ 
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select :rating, [1, 2, 3, 4, 5], include_blank: false, selected:4 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "送出" %>
+  </div>
+
+  <% end %>
+  
+  <div class="review-container">
+    <h2>評論</h2>
+    <% @reviews.each do |review| %>
+    <section class="comment">
+      星數 :<%= "★"*review.rating %><%= "☆"*(5-review.rating) %>
+      <header><%= review.title%></header>
+      <article><%= review.content%></article>
+    </section>
+    <% end %>
+</div>
+
+<%= link_to 'last page', courses_path %>
+
