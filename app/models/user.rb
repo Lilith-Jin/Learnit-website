@@ -8,7 +8,9 @@ class User < ApplicationRecord
 
   #與courses做關聯
   has_many :courses
-   
+ 
+  has_many :favor_courses
+  has_many :favorite_courses, through: :favor_courses, source: :course
 
   #建立時先做encrypt_password而非before_save
   before_create :encrypt_password 
@@ -22,13 +24,13 @@ class User < ApplicationRecord
 
     salted_password = "xy#{password.reverse}hellohey"
     encryted_password = Digest::SHA1.hexdigest(salted_password)
-
     # find_by回傳登入資訊
     # User.find_by(email: email, password: encryted_password)
     self.find_by(email: email, password: encryted_password)
   end
 
   private
+
   def encrypt_password
     salted_password = "xy#{self.password.reverse}hellohey"
     self.password = Digest::SHA1.hexdigest(salted_password)
