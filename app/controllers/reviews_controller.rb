@@ -9,7 +9,9 @@ class ReviewsController < ApplicationController
     # @review.user_id = current_user.id #將使用者灌給review，用merge就可以省略此行
 
     if @review.save
-      # redirect_to course_path(course), notice: 'commented!'以JS渲染，不換頁
+      # redirect_to course_path(course), notice: 'commented!'以JS渲染，不換頁先#
+      # redirect_to course show頁面的特化版寫法
+      # return
     else
       #
     end

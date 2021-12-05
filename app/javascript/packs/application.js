@@ -7,7 +7,12 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "stylesheets" //沒有寫檔名，預設為index.js
+// import "stylesheets/aaa.js" ->引入stylesheets內的aaa.js
+import "scripts"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// console.log("hi");

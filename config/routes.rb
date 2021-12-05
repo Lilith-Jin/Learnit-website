@@ -1,12 +1,24 @@
 Rails.application.routes.draw do
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-    resources :courses do
-      #resources :reviews, shallow :true (自動長出巢狀路徑)
-      resources :reviews, only:[:create] #因為用到的action少 手動新增需要的就好
+    #/api/v1/courses/2/like
+    namespace :api do
+      namespace :v1 do
+        resources :courses, only: [] do
+          member do
+            post :like #like路徑包在courses裡面
+          end
+        end
+      end
     end
-      resources :reviews, only:[:destroy] #
-
+  
+      resources :courses do
+      #resources :reviews, shallow :true (自動長出巢狀路徑)
+      resources :reviews, only:[:create] #現在專案用到的action少 手動新增需要的就好
+    end
+      resources :reviews, only:[:destroy] #與course id無關
+    #首頁
     root "courses#index"
 
     # get "/", to: "pages#index"
