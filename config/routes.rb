@@ -12,10 +12,17 @@ Rails.application.routes.draw do
         end
       end
     end
+    
   
+    #/courses
       resources :courses do
+        member  do
+          get :buy
+        end
       #resources :reviews, shallow :true (自動長出巢狀路徑)
       resources :reviews, only:[:create] #現在專案用到的action少 手動新增需要的就好
+      # /orders 跟course有關，所以需要id
+      resources :orders, only:[:create] #post course/:id/orders
     end
       resources :reviews, only:[:destroy] #與course id無關
     #首頁

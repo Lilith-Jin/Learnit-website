@@ -3,6 +3,7 @@ class Course < ApplicationRecord
 
   belongs_to :user
   has_many :reviews
+  has_many :orders
   # 建立關聯
   has_many :favor_courses 
   # join table讓user[id]和course[id]可以反查

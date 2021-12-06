@@ -1,0 +1,19 @@
+<h1>購買課程</h1>
+
+<%= form_for(@order, url: course_orders_path(@course))  do |f| %>
+
+    <div class="field">
+      <%= f.label :recipient %>
+      <%= f.text_field :recipient %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+    
+  <div class="action">
+    <%= f.submit "送出" %>
+  </div>
+  
+  <% end %>

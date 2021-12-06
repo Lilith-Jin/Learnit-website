@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   #與courses做關聯
   has_many :courses
- 
+  has_many :orders
+
   has_many :favor_courses
   has_many :favorite_courses, through: :favor_courses, source: :course
 

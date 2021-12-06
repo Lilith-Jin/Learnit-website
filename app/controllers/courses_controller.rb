@@ -21,6 +21,12 @@ class CoursesController < ApplicationController
     #lazy loading 要用再印出來
     #order(id: :desc) 透過資料庫撈出來的資料，做反向排序
   end
+    #buy要寫在course裡面
+  def buy
+    #因為order路徑包到coursex裡面，所以要找到他的id
+    @course = Course.find_by(id: params[:id])
+    @order = Order.new
+  end
 
   def create
     # @course = Course.new(course_params) 無判斷使用者狀態
