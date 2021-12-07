@@ -1,16 +1,28 @@
-<h1><%= @course.name %></h1>
+<%# 要注意加上=<%= @course.id %> 
+<h1 data-controller="favor"
+    data-favor-liked-value="<%= user_signed_in? && current_user.favorite_courses.include?(@course) %>"
+    data-favor-course-id-value="<%= @course.id %>"
+>
+  <%= @course.name %>
+  <%# 所有的data-XXX都是輸出字串 %>
+  <button data-favor-target = "btn" 
+          data-action="click->favor#like">
+          Like!
+  </button>
 
-<!-- <ul>
-  <li><%= @course.price %></li>
-  <li><%= @course.intro %></li>
-  <li><%= @course.hour %></li>
-</ul> -->
+</h1>
+<h4 class='txt'>熱門課程</h4>
+<%= link_to "購買課程" , buy_course_path(@course)%>
 
-<%= form_for(@review, url: course_reviews_path(@course)) do |f| %> 
+<%# remote: true 為了不讓表單換頁 %>
+<%= form_for(@review, url: course_reviews_path(@course), remote: true) do |f| %> 
+
  
-  <div class="field">
+  <div class="field" >
     <%= f.label :rating %>
-    <%= f.select :rating, [1, 2, 3, 4, 5], include_blank: false, selected:4 %>
+    <%# include_blank: 預設是否it空白 ,selected: 預設值%>
+    <%= f.select :rating , [1, 2, 3, 4, 5], include_blank: true %>
+    <%#= f.select :rating , [1, 2, 3, 4, 5], include_blank: false, selected:4 %>
   </div>
 
   <div class="field">
@@ -28,17 +40,15 @@
   </div>
 
   <% end %>
-  
-  <div class="review-container">
-    <h2>評論</h2>
-    <% @reviews.each do |review| %>
-    <section class="comment">
-      星數 :<%= "★"*review.rating %><%= "☆"*(5-review.rating) %>
-      <header><%= review.title%></header>
-      <article><%= review.content%></article>
-    </section>
-    <% end %>
-</div>
 
-<%= link_to 'last page', courses_path %>
+  <h2>評論</h2>
+  <div class="review-container" data-controller="favor">
+    <%# @reviews.each do |review| %>
+      <%#= render "review", review: @review %><%#@review是從reviews_controller來的，用collection比較不影響效能%>
+      <%#= render partial: "review", collection: @reviews %> <%#collection比較不影響效能%>
+      <%= render @reviews %><%#1.@reviews是從原本的each來的 2.依照rails慣例，將_review檔與js放在一起%>
+    <%# end %>
+  </div>
+
+<button><%= link_to 'last page', courses_path %></button>
 

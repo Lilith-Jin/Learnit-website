@@ -1,0 +1,17 @@
+var reviewContainer = document.querySelector('.review-container')
+
+var el = document.createElement('div')
+var reviewContent = `<%=render "review",review: @review %>`
+// 在js的字串如果斷行要用backtic ``
+
+el.innerHTML = reviewContent 
+// 放到DOM元素裡
+
+reviewContainer.insertAdjacentElement('afterbegin',el.firstChild) 
+
+document.querySelector('#new_review').reset()
+
+// insertAdjacentElement抓出元素，afterbegin表示擺在<div>內最上方，el.firstChild選取
+// createElment做出DOM元素，el只是一個殼(裝DOM元素)把字串轉換成DOM元素
+
+// 後端收到js，頁面並沒有換頁不會更新，前端演戲，前端只接資料和輸出畫面，只有ruby的後端可以接到js的資料，離開ruby會壞

@@ -14,10 +14,27 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find_by(id: params[:id])
     @review = Review.new
-    # @reviews = Review.where(course_id: @course) 省略
-    # @reviews是getter
-    @reviews = @course.reviews.order(id: :desc)#lazy loading 要用再印出來
+    # @reviews = Review.where(course_id: @course.id) 省略
+    # @reviews是getter，因為關聯性的關係自動長好
+    @reviews = @course.reviews.order(id: :desc)
+
+    #lazy loading 要用再印出來
     #order(id: :desc) 透過資料庫撈出來的資料，做反向排序
+  end
+    #buy要寫在course裡面
+  def buy
+    #因為order路徑包到coursex裡面，所以要找到他的id
+    @course = Course.find_by(id: params[:id])
+    @order = Order.new
+
+    gateway = Braintree::Gateway.new(
+          :environment => :sandbox,
+          :merchant_id => ENV['braintree_merchant_id'],
+          :public_key => ENV['braintree_public_key'],
+          :private_key => ENV['braintree_private_key']
+          
+        )
+    @token = gateway.client_token.generate
   end
 
   def create

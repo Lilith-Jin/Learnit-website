@@ -1,0 +1,11 @@
+body{
+background-color: papayawhip;
+}
+
+.field_with_errors {
+  display: inline;
+}
+
+.field_with_errors input[type="text"] {
+  border: solid 2px red;
+}

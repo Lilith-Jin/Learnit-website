@@ -26,10 +26,10 @@ class ApplicationController < ActionController::Base
 
   def authenticated!
     #   #如果沒登入，轉去登入頁面
-    #   # if not user_signed_in?
-    #   # if session[:recognize] == nil
-    #     # redirect_to sign_up_path
-    #   # end
+      # if not user_signed_in?
+      # if session[:recognize] == nil
+      # redirect_to sign_up_path
+      # end
       redirect_to sign_in_path flash[:notice]='請先登入會員' unless user_signed_in?
     
     end

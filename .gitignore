@@ -46,3 +46,6 @@ test/fixtures/candidates.yml
 test/fixtures/courses.yml
 test/models/candidate_test.rb
 test/models/course_test.rb
+
+# Ignore application configuration
+/config/application.yml

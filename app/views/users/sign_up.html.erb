@@ -22,9 +22,10 @@
 
 <% end %>
 
-<#form method="post" action = '/account_verify'>
+<%#form method="post" action = '/account_verify'>
   <input type="hidden" name='_method' value='put'>偷偷塞入想要執行的方法
-  <input type="text" name='authenticity_token' value='<%= form_authenticity_token %>'>form_authenticity_token ruby語法
+  <input type="text" name='authenticity_token' value='<%= form_authenticity_token %>
+  <%#form_authenticity_token ruby語法>
   <input type="text" name='usernsme'>
   <input type="password" name="password">
   <input type="submit" value="登入">
