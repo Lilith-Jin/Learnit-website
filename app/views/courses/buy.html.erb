@@ -2,6 +2,16 @@
 
 <%= form_for(@order, url: course_orders_path(@course))  do |f| %>
 
+<%# 從course_controller的gateway取得金鑰放進@token %>
+<%#= @token %>
+
+  <div data-controller="payment" data-payment-token-value="<%= @token %>">
+    <div data-payment-target="dropin"></div>
+    <%# 手冊上的第四步驟拿到一坨nonce %>
+    <input type="hidden" name="nonce" data-payment-target="nonce" />
+  </div>
+
+
     <div class="field">
       <%= f.label :recipient %>
       <%= f.text_field :recipient %>

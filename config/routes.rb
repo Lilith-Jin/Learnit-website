@@ -12,7 +12,8 @@ Rails.application.routes.draw do
         end
       end
     end
-    
+     # /orders 跟course有關，移置course內
+    #  resources :orders, only:[:create] 
   
     #/courses
       resources :courses do

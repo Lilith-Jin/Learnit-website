@@ -26,6 +26,15 @@ class CoursesController < ApplicationController
     #因為order路徑包到coursex裡面，所以要找到他的id
     @course = Course.find_by(id: params[:id])
     @order = Order.new
+
+    gateway = Braintree::Gateway.new(
+          :environment => :sandbox,
+          :merchant_id => ENV['braintree_merchant_id'],
+          :public_key => ENV['braintree_public_key'],
+          :private_key => ENV['braintree_private_key']
+          
+        )
+    @token = gateway.client_token.generate
   end
 
   def create

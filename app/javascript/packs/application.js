@@ -16,3 +16,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // console.log("hi");
+
+import "controllers"

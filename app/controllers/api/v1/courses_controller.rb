@@ -17,14 +17,16 @@ class Api::V1::CoursesController < ApplicationController
     if favorite_course
       #有的話就刪除
       favorite_course.destroy
-      render json: { status: "unlike"} 
+      render json: { result: "unlike"} 
     else
       #沒有的話以user角度加到我的最愛
       current_user.favorite_courses << course 
-      render json: { status: "like"} 
+      render json: { result: "like"} 
     end
     
   end
+
+
 
   private
   #每次按讚前判斷是否登入

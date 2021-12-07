@@ -1,4 +1,4 @@
-<%# 要注意加上=<%= @course.id %> %>
+<%# 要注意加上=<%= @course.id %> 
 <h1 data-controller="favor"
     data-favor-liked-value="<%= user_signed_in? && current_user.favorite_courses.include?(@course) %>"
     data-favor-course-id-value="<%= @course.id %>"
